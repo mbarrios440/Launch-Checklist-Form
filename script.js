@@ -65,14 +65,14 @@ window.addEventListener("load", function () {
       !isNaN(fuel.value) &&
       !isNaN(cargokg.value)
     ) {
-      if (fuel.value != "" && fuel.value < 10000) {
+      if (fuel.value < 10000) {
         faultyItems.style.visibility = "visible";
         fuelStatus.innerHTML = `There is not enough fuel for the journey`;
         launchStatus.style.color = `red`;
         launchStatus.innerHTML = `Shuttle not ready for launch`;
       }
 
-      if (cargokg.value != "" && cargokg.value >= 10000) {
+      if (cargokg.value >= 10000) {
         faultyItems.style.visibility = "visible";
         cargoStatus.innerHTML = `There is too much mass to take off`;
         launchStatus.style.color = `red`;
