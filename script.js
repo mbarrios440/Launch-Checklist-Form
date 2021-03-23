@@ -88,7 +88,7 @@ window.addEventListener("load", function () {
       }
 
       if (fuel.value >= 10000 && cargokg.value < 10000) {
-        faultyItems.style.visibility = "";
+
         launchStatus.innerHTML = `Shuttle is ready for launch`;
         launchStatus.style.color = `green`;
       }
