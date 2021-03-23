@@ -36,24 +36,6 @@ window.addEventListener("load", function () {
     let launchStatus = document.getElementById("launchStatus");
     let cargoStatus = document.getElementById("cargoStatus");
 
-    if (
-      pilot.value === "" ||
-      copilot.value === "" ||
-      fuel.value === "" ||
-      cargokg.value === ""
-    ) {
-      faultyItems.style.visibility = "";
-      launchStatus.style.color = "";
-      launchStatus.innerHTML = "Awaiting Information Before Launch";
-      alert("All fields are required");
-    }
-    if (isNaN(fuel.value) || isNaN(cargokg.value)) {
-      faultyItems.style.visibility = "";
-      launchStatus.style.color = "";
-      launchStatus.innerHTML = "Awaiting Information Before Launch";
-      alert("Values for Fuel Level and Cargo Mass must be numeric");
-    }
-
     pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`;
     copilotStatus.innerHTML = `Co-pilot ${copilot.value} is ready for launch`;
 
@@ -65,18 +47,16 @@ window.addEventListener("load", function () {
       !isNaN(fuel.value) &&
       !isNaN(cargokg.value)
     ) {
-      if (fuel.value < 10000) {
-        faultyItems.style.visibility = "visible";
-        fuelStatus.innerHTML = `There is not enough fuel for the journey`;
+      faultyItems.style.visibility = "visible";
+      if (fuel.value < 10000 || cargokg.value >= 10000) {
         launchStatus.style.color = `red`;
         launchStatus.innerHTML = `Shuttle not ready for launch`;
-      }
-
-      if (cargokg.value >= 10000) {
-        faultyItems.style.visibility = "visible";
-        cargoStatus.innerHTML = `There is too much mass to take off`;
-        launchStatus.style.color = `red`;
-        launchStatus.innerHTML = `Shuttle not ready for launch`;
+        if (fuel.value < 10000) {
+          fuelStatus.innerHTML = `There is not enough fuel for the journey`;
+        }
+        if (cargokg.value >= 10000) {
+          cargoStatus.innerHTML = `There is too much mass to take off`;
+        }
       }
 
       if (fuel.value >= 10000) {
@@ -88,9 +68,26 @@ window.addEventListener("load", function () {
       }
 
       if (fuel.value >= 10000 && cargokg.value < 10000) {
-        faultyItems.style.visibility = "visible";
         launchStatus.innerHTML = `Shuttle is ready for launch`;
         launchStatus.style.color = `green`;
+      }
+    } else {
+      faultyItems.style.visibility = "";
+      launchStatus.style.color = "";
+      launchStatus.innerHTML = "Awaiting Information Before Launch";
+      if (
+        pilot.value === "" ||
+        copilot.value === "" ||
+        fuel.value === "" ||
+        cargokg.value === ""
+      ) {
+        alert("All fields are required");
+      }
+      if (isNaN(fuel.value)) {
+        alert("Invalid Entry. Fuel Level must be a number");
+      }
+      if (isNaN(cargokg.value)) {
+        alert("Invalid Entry. Cargo Mass must be a number");
       }
     }
   });
