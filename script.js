@@ -48,28 +48,23 @@ window.addEventListener("load", function () {
       !isNaN(cargokg.value)
     ) {
       faultyItems.style.visibility = "visible";
-      if (fuel.value < 10000 || cargokg.value >= 10000) {
-        launchStatus.style.color = `red`;
-        launchStatus.innerHTML = `Shuttle not ready for launch`;
-        if (fuel.value < 10000) {
-          fuelStatus.innerHTML = `There is not enough fuel for the journey`;
-        }
-        if (cargokg.value >= 10000) {
-          cargoStatus.innerHTML = `There is too much mass to take off`;
-        }
-      }
-
-      if (fuel.value >= 10000) {
-        fuelStatus.innerHTML = `Fuel level high enough for launch`;
-      }
-
-      if (cargokg.value < 10000) {
-        cargoStatus.innerHTML = `Cargo mass low enough for launch`;
-      }
-
       if (fuel.value >= 10000 && cargokg.value < 10000) {
         launchStatus.innerHTML = `Shuttle is ready for launch`;
         launchStatus.style.color = `green`;
+        fuelStatus.innerHTML = `Fuel level high enough for launch`;
+        cargoStatus.innerHTML = `Cargo mass low enough for launch`;
+      } else {
+        launchStatus.style.color = `red`;
+        if (fuel.value < 10000) {
+          fuelStatus.innerHTML = `There is not enough fuel for the journey`;
+        } else {
+          fuelStatus.innerHTML = `Fuel level high enough for launch`;
+        }
+        if (cargokg.value >= 10000) {
+          cargoStatus.innerHTML = `There is too much mass to take off`;
+        } else {
+          cargoStatus.innerHTML = `Cargo mass low enough for launch`;
+        }
       }
     } else {
       faultyItems.style.visibility = "";
