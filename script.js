@@ -1,5 +1,5 @@
 window.addEventListener("load", function () {
-  let form = document.getElementById("launchForm");
+  const form = document.getElementById("launchForm");
 
   async function getPlanet() {
     const response = await fetch(
@@ -7,7 +7,7 @@ window.addEventListener("load", function () {
     );
     const planets = await response.json();
     const missionTarget = document.getElementById("missionTarget");
-    let randomPlanet = Math.floor(Math.random() * planets.length);
+    const randomPlanet = Math.floor(Math.random() * planets.length);
 
     missionTarget.innerHTML = `
          <h2>Mission Destination</h2>
@@ -25,16 +25,16 @@ window.addEventListener("load", function () {
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    let pilot = document.querySelector("input[name=pilotName]");
-    let copilot = document.querySelector("input[name=copilotName]");
-    let fuel = document.querySelector("input[name=fuelLevel]");
-    let cargokg = document.querySelector("input[name=cargoMass]");
-    let pilotStatus = document.getElementById("pilotStatus");
-    let copilotStatus = document.getElementById("copilotStatus");
-    let faultyItems = document.getElementById("faultyItems");
-    let fuelStatus = document.getElementById("fuelStatus");
-    let launchStatus = document.getElementById("launchStatus");
-    let cargoStatus = document.getElementById("cargoStatus");
+    const pilot = document.querySelector("input[name=pilotName]");
+    const copilot = document.querySelector("input[name=copilotName]");
+    const fuel = document.querySelector("input[name=fuelLevel]");
+    const cargokg = document.querySelector("input[name=cargoMass]");
+    const pilotStatus = document.getElementById("pilotStatus");
+    const copilotStatus = document.getElementById("copilotStatus");
+    const faultyItems = document.getElementById("faultyItems");
+    const fuelStatus = document.getElementById("fuelStatus");
+    const launchStatus = document.getElementById("launchStatus");
+    const cargoStatus = document.getElementById("cargoStatus");
 
     pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`;
     copilotStatus.innerHTML = `Co-pilot ${copilot.value} is ready for launch`;
