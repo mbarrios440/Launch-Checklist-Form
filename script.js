@@ -55,6 +55,7 @@ window.addEventListener("load", function () {
         cargoStatus.innerHTML = `Cargo mass low enough for launch`;
       } else {
         launchStatus.style.color = `red`;
+        launchStatus.innerHTML = `Shuttle not ready for launch`;
         if (fuel.value < 10000) {
           fuelStatus.innerHTML = `There is not enough fuel for the journey`;
         } else {
